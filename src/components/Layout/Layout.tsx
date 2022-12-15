@@ -4,7 +4,9 @@ import styled from "styled-components";
 
 import { Layout } from "antd";
 
-const { Header, Footer, Content } = Layout;
+import Header from "../Header";
+
+const { Footer, Content } = Layout;
 
 interface IProps {
     children: React.ReactNode;
@@ -16,7 +18,7 @@ const StyledLayout = styled(Layout)`
 
 const AppLayout: React.FC<IProps> = ({ children }) => (
     <StyledLayout className="layout">
-        <Header>Header</Header>
+        <Header />
         <Content>{children}</Content>
         <Footer>Footer</Footer>
     </StyledLayout>

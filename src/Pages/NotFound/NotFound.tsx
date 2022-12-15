@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Result, Button } from "antd";
 import { Helmet } from "react-helmet";
 
+import { ROUTES } from "../../constants";
+
 const NotFound: React.FC = () => {
     return (
         <>
@@ -13,7 +15,7 @@ const NotFound: React.FC = () => {
                 title="404"
                 subTitle="Sorry, the page you visited does not exist."
                 extra={
-                    <Link to={"/"}>
+                    <Link to={ROUTES.HOME}>
                         <Button type="primary">Back Home</Button>
                     </Link>
                 }

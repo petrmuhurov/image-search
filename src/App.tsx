@@ -30,6 +30,7 @@ function App() {
                                 errorElement={<NotFound />}
                             />
                             <Route path={ROUTES.LOGIN} element={<Login />} />
+                            <Route path="*" element={<NotFound />} />
                         </Routes>
                     </Authorization>
                 </BrowserRouter>

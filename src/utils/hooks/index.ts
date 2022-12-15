@@ -1,2 +1,3 @@
-export { default as useAuthentication } from "./useAuthentication";
-export { default as useLoginRedirection } from "./useLoginRedirection";
+export { default as useAuthorization } from "./useAuthorization";
+export { default as useAuthUser } from "./useAuthUser";
+export { default as useImagesQuery } from "./useImagesQuery";

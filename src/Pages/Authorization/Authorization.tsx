@@ -1,17 +1,27 @@
 import React from "react";
 
-import { observer } from "mobx-react-lite";
-
-import { useLoginRedirection } from "../../utils/hooks";
+import { UserContext } from "../../context";
+import { useAuthorization } from "../../utils/hooks";
 
 interface Props {
     children: React.ReactElement;
 }
 
 const Authorization: React.FunctionComponent<Props> = ({ children }) => {
-    useLoginRedirection();
+    const { user, login, logout, isLoggedIn } = useAuthorization();
 
-    return children;
+    return (
+        <UserContext.Provider
+            value={{
+                user,
+                login,
+                logout,
+                isLoggedIn,
+            }}
+        >
+            {children}
+        </UserContext.Provider>
+    );
 };
 
-export default observer(Authorization);
+export default Authorization;

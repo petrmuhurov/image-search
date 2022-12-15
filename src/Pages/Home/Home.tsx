@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Helmet } from "react-helmet";
+import { Form, Input } from "antd";
+
+import Layout from "../../components/Layout";
+
+import { useImagesQuery } from "../../utils/hooks";
 
 const Home: React.FC = () => {
+    const [searchValue, setSearchValue] = useState("");
+
+    const { data, isFetching } = useImagesQuery({ search: searchValue });
+
     return (
-        <div>
+        <>
             <Helmet title="Home" />
-        </div>
+            <Layout>
+                <Form>
+                    <Form.Item label="Enter">
+                        <Input
+                            value={searchValue}
+                            onChange={(e) => setSearchValue(e.target.value)}
+                        />
+                    </Form.Item>
+                </Form>
+            </Layout>
+        </>
     );
 };
 
