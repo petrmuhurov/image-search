@@ -31,6 +31,7 @@ const Login = () => {
                 <h2>Please enter your first name</h2>
                 <Form onFinish={login}>
                     <Form.Item
+                        data-testid="name-field"
                         name="name"
                         rules={[
                             {
@@ -45,7 +46,11 @@ const Login = () => {
                     >
                         <Input placeholder="Please enter your name" />
                     </Form.Item>
-                    <Button type="primary" htmlType="submit">
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        data-testid="submit-button"
+                    >
                         Login
                     </Button>
                 </Form>

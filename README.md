@@ -21,3 +21,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 [ ] **Authorization: make clean and global**
 [ ] **Refactor routing**
 [ ] **Seperate styles from components**
+[ ] **Run tests**
+[ ] **Remove vulnerabilities**
+[ ] **Work with images: scaling, lazylist**

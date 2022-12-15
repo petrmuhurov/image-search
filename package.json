@@ -26,7 +26,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
+        "test": "react-scripts test --env=jest-environment-jsdom",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
@@ -48,8 +48,10 @@
         ]
     },
     "devDependencies": {
+        "@testing-library/react-hooks": "^8.0.1",
         "@types/lodash": "^4.14.191",
         "@types/react-helmet": "^6.1.6",
-        "@types/styled-components": "^5.1.26"
+        "@types/styled-components": "^5.1.26",
+        "jest-environment-jsdom": "^29.3.1"
     }
 }
