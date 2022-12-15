@@ -8,13 +8,13 @@ import { ROUTES } from "../../constants";
 const __STORAGE_KEY__ = "__AUTHENTICATED_USER__";
 
 interface IUser {
-    name: string;
+    name?: string;
 }
 
 const useAuthorization = () => {
     const navigate = useNavigate();
 
-    const [user, setUser] = useState<IUser | undefined>(get(__STORAGE_KEY__));
+    const [user, setUser] = useState<IUser>(get(__STORAGE_KEY__));
 
     const login = (user: IUser) => {
         setUser(user);
@@ -25,9 +25,9 @@ const useAuthorization = () => {
     };
 
     const logout = () => {
-        setUser(undefined);
+        setUser({});
 
-        set(__STORAGE_KEY__, undefined);
+        set(__STORAGE_KEY__, {});
 
         navigate(ROUTES.LOGIN);
     };

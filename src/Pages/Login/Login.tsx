@@ -21,7 +21,7 @@ const FormWrapper = styled("div")`
     }
 `;
 
-const Login: React.FC = () => {
+const Login = () => {
     const { login } = useAuthUser();
 
     return (

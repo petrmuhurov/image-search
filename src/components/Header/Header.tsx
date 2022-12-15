@@ -16,8 +16,6 @@ const StyledHeader = styled(Layout.Header)`
 const Header = () => {
     const { user, isLoggedIn, logout } = useAuthUser();
 
-    console.log(isLoggedIn);
-
     return (
         <StyledHeader>
             {isLoggedIn && (

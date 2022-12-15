@@ -5,11 +5,11 @@ import { UserContext } from "../../context";
 import { useAuthorization } from "../../utils/hooks";
 import { ROUTES } from "../../constants";
 
-interface Props {
+interface IProps {
     children: React.ReactElement;
 }
 
-const Authorization: React.FunctionComponent<Props> = ({ children }) => {
+const Authorization = ({ children }: IProps) => {
     const navigate = useNavigate();
 
     const { user, login, logout, isLoggedIn } = useAuthorization();
@@ -17,7 +17,7 @@ const Authorization: React.FunctionComponent<Props> = ({ children }) => {
     useEffect(() => {
         if (isLoggedIn) navigate(ROUTES.HOME);
         if (!isLoggedIn) navigate(ROUTES.LOGIN);
-    }, [isLoggedIn]);
+    }, [isLoggedIn, navigate]);
 
     return (
         <UserContext.Provider

@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 
 import { ROUTES } from "../../constants";
 
-const NotFound: React.FC = () => {
+const NotFound = () => {
     return (
         <>
             <Helmet title="Not Found" />

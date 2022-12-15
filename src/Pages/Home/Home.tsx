@@ -17,6 +17,8 @@ const FormWrapper = styled(Form)`
     align-items: center;
     justify-content: center;
     padding-top: 12px;
+    z-index: 10;
+    background: #f5f5f5;
 
     & .ant-form-item {
         width: 400px;
@@ -24,7 +26,7 @@ const FormWrapper = styled(Form)`
     }
 `;
 
-const Home: React.FC = () => {
+const Home = () => {
     const [searchValue, setSearchValue] = useState("");
 
     const { data, isFetching } = useImagesQuery({ search: searchValue });
