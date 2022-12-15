@@ -36,7 +36,7 @@ const useAuthorization = () => {
         user,
         login,
         logout,
-        isLoggedIn: !!user,
+        isLoggedIn: !!user?.name,
     };
 };
 

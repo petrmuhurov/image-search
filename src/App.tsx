@@ -1,8 +1,9 @@
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Spin } from "antd";
 import { Helmet } from "react-helmet";
+
+import ApplicationFallback from "./components/ApplicationFallback";
 
 import { ROUTES } from "./constants";
 
@@ -20,7 +21,7 @@ function App() {
                 defaultTitle="Image Search"
                 titleTemplate="Image Search - %s"
             />
-            <Suspense fallback={<Spin size="large" />}>
+            <Suspense fallback={<ApplicationFallback />}>
                 <BrowserRouter>
                     <Authorization>
                         <Routes>
