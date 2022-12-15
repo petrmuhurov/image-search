@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import styled from "styled-components";
 
@@ -10,10 +10,15 @@ import Layout from "../../components/Layout";
 import { useAuthUser } from "../../utils/hooks";
 
 const FormWrapper = styled("div")`
-    height: 100%;
+    height: calc(100vh - 64px);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    & .ant-form {
+        min-width: 400px;
+    }
 `;
 
 const Login: React.FC = () => {
@@ -23,14 +28,18 @@ const Login: React.FC = () => {
         <Layout>
             <Helmet title="Login" />
             <FormWrapper>
+                <h2>Please enter your first name</h2>
                 <Form onFinish={login}>
                     <Form.Item
-                        label="First name"
                         name="name"
                         rules={[
                             {
                                 required: true,
                                 message: "Please fill the required field",
+                            },
+                            {
+                                max: 32,
+                                message: "Only 32 symbols allowed",
                             },
                         ]}
                     >

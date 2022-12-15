@@ -26,9 +26,10 @@ interface IImageQueryResult {
 
 const useImagesQuery = ({ search }: IImageQuery): IImageQueryResult => {
     const [searchValue] = useDebounce(search, 800);
+
     const [isFetching, setFetching] = useState(false);
     const [data, setData] = useState<IImageItem[]>([]);
-    const [error, setError] = useState<any>({});
+    const [error, setError] = useState({});
 
     useEffect(() => {
         if (searchValue) {
