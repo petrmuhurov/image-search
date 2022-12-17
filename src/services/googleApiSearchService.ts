@@ -1,4 +1,4 @@
-const API_KEY = 'AIzaSyDUmkgUcdqSA8uiwdnfN9kRPwbHmJrQ5l8'
+const API_KEY = ''
 const URL = 'https://www.googleapis.com/customsearch/v1'
 
 const service = {
