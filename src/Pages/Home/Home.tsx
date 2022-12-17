@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { Form, Input, Spin } from "antd";
 
-import Layout from "../../components/Layout";
 import Cards from "../../components/Cards";
 
 import { useImagesQuery } from "../../utils/hooks";
@@ -34,22 +33,20 @@ const Home = () => {
     return (
         <>
             <Helmet title="Home" />
-            <Layout>
-                <FormWrapper>
-                    <Form.Item>
-                        <Input.Search
-                            value={searchValue}
-                            onChange={(e) => setSearchValue(e.target.value)}
-                            loading={isFetching}
-                            disabled={isFetching}
-                            placeholder="We will get you whatever you want"
-                        />
-                    </Form.Item>
-                </FormWrapper>
-                <Spin spinning={isFetching}>
-                    <Cards data={data} />
-                </Spin>
-            </Layout>
+            <FormWrapper>
+                <Form.Item>
+                    <Input.Search
+                        value={searchValue}
+                        onChange={(e) => setSearchValue(e.target.value)}
+                        loading={isFetching}
+                        disabled={isFetching}
+                        placeholder="We will get you whatever you want"
+                    />
+                </Form.Item>
+            </FormWrapper>
+            <Spin spinning={isFetching}>
+                <Cards data={data} />
+            </Spin>
         </>
     );
 };

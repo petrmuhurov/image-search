@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { Layout, Button } from "antd";
+
 import { useAuthUser } from "../../utils/hooks";
 
 const StyledHeader = styled(Layout.Header)`
@@ -14,7 +15,7 @@ const StyledHeader = styled(Layout.Header)`
 `;
 
 const Header = () => {
-    const { user, isLoggedIn, logout } = useAuthUser();
+    const { isLoggedIn, user, logout } = useAuthUser();
 
     return (
         <StyledHeader>

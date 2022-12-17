@@ -1,12 +1,33 @@
-import { useContext } from "react";
+import { useCallback } from "react";
 
-import { UserContext } from "../../context";
+import { useRecoilState } from "recoil";
+
+import { authUser } from "../../stores";
+
+interface User {
+    name: string;
+}
 
 const useAuthUser = () => {
-    const userContext = useContext(UserContext);
+    const [user, setUser] = useRecoilState(authUser);
+
+    const logout = useCallback(() => {
+        setUser({});
+    }, [setUser]);
+
+    const login = useCallback(
+        (user: User) => {
+            setUser(user);
+        },
+        [setUser]
+    );
 
     return {
-        ...userContext,
+        user,
+        isLoggedIn: !!user?.name,
+
+        login,
+        logout,
     };
 };
 

@@ -1,18 +1,15 @@
-import React, { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { Suspense } from "react";
+import { BrowserRouter } from "react-router-dom";
+
+import { RecoilRoot } from "recoil";
 
 import { Helmet } from "react-helmet";
 
+import Authentication from "./Pages/Authentication";
+import AppRoutes from "./Pages/Routes";
 import ApplicationFallback from "./components/ApplicationFallback";
 
-import { ROUTES } from "./constants";
-
 import "./App.css";
-
-const Home = lazy(() => import("./Pages/Home"));
-const Login = lazy(() => import("./Pages/Login"));
-const NotFound = lazy(() => import("./Pages/NotFound"));
-const Authorization = lazy(() => import("./Pages/Authorization"));
 
 function App() {
     return (
@@ -22,19 +19,13 @@ function App() {
                 titleTemplate="Image Search - %s"
             />
             <Suspense fallback={<ApplicationFallback />}>
-                <BrowserRouter>
-                    <Authorization>
-                        <Routes>
-                            <Route
-                                path={ROUTES.HOME}
-                                element={<Home />}
-                                errorElement={<NotFound />}
-                            />
-                            <Route path={ROUTES.LOGIN} element={<Login />} />
-                            <Route path="*" element={<NotFound />} />
-                        </Routes>
-                    </Authorization>
-                </BrowserRouter>
+                <RecoilRoot>
+                    <Authentication>
+                        <BrowserRouter>
+                            <AppRoutes />
+                        </BrowserRouter>
+                    </Authentication>
+                </RecoilRoot>
             </Suspense>
         </div>
     );

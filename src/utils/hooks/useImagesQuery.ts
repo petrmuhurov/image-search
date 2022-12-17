@@ -37,7 +37,7 @@ const useImagesQuery = ({ search }: IImageQuery): IImageQueryResult => {
 
             googleApiSearchService
                 .find(searchValue)
-                .then(({ items }) => {
+                .then(({ items }: any) => {
                     setData(
                         map(items, (item: any) => ({
                             link: item.link,
