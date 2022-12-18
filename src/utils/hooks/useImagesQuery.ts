@@ -42,7 +42,10 @@ const useImagesQuery = ({ search }: IImageQuery): IImageQueryResult => {
     useEffect(() => {
         const nextPage = search === prevSearch ? page : 1;
 
-        if (search !== prevSearch) setPage(1);
+        if (search !== prevSearch) {
+            setPage(1);
+            setData([])
+        }
 
         if (search && !isFetching) {
             setFetching(true);
@@ -72,7 +75,7 @@ const useImagesQuery = ({ search }: IImageQuery): IImageQueryResult => {
     }, [search, page]);
 
     const loadMore = useCallback(() => {
-        if (!isFetching && search === prevSearch) setPage(page + 1);
+        if (!isFetching) setPage(page + 1);
     }, [page, isFetching]);
 
     return {
