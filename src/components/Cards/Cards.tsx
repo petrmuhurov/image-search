@@ -1,21 +1,22 @@
+import { map } from "lodash";
+
 import React from "react";
 
 import styled from "styled-components";
 
-import { Image } from "antd";
-import { map } from "lodash";
+import { Image, Spin } from "antd";
 
-interface ICardItem {
-    link: string;
-    context: string;
+interface CardItem {
+    alt: string;
+    url: string;
+    smallSrc: string;
+    originalSrc: string;
     height: number;
     width: number;
-    title: string;
-    thumbnailLink: string;
 }
 
-interface IProps {
-    data: ICardItem[];
+interface Props {
+    data: CardItem[];
 }
 
 const CardWrapper = styled("div")`
@@ -23,38 +24,24 @@ const CardWrapper = styled("div")`
     gap: 24px;
     flex-wrap: wrap;
     padding: 24px;
-    justify-content: space-evenly;
+    justify-content: space-between;
 `;
 
-const Cards = ({ data }: IProps) => {
+const Cards = ({ data }: Props) => {
     return (
-        <CardWrapper style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
+        <CardWrapper>
             {map(data, (item) => (
                 <Image
-                    key={`image-${item.link}`}
-                    src={item.thumbnailLink}
-                    alt={item.context}
-                    preview={{ src: item.link }}
+                    key={`image-${item.url}`}
+                    src={item.smallSrc}
+                    alt={item.alt}
+                    preview={{ src: item.originalSrc }}
                     height="240px"
+                    placeholder={<Spin />}
                 />
             ))}
         </CardWrapper>
     );
-    // return (
-    //     <List
-    //         grid={{ sm: 2, lg: 4, xl: 6 }}
-    //         dataSource={data}
-    //         renderItem={(item) => (
-    //             <List.Item title={item.title}>
-    // <ImageWrapper
-    //     src={item.thumbnailLink}
-    //     alt={item.context}
-    //     preview={{ src: item.link }}
-    // />
-    //             </List.Item>
-    //         )}
-    //     />
-    // );
 };
 
 export default Cards;

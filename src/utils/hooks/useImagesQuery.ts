@@ -3,19 +3,19 @@ import { map } from "lodash";
 import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
 
-import { googleApiSearchService } from "../../services";
+import { pexelsService } from "../../services";
 
 interface IImageQuery {
-    search: string | undefined;
+    search?: string;
 }
 
 interface IImageItem {
-    link: string;
-    context: string;
+    alt: string;
+    url: string;
+    smallSrc: string;
+    originalSrc: string;
     height: number;
     width: number;
-    title: string;
-    thumbnailLink: string;
 }
 
 interface IImageQueryResult {
@@ -25,39 +25,41 @@ interface IImageQueryResult {
 }
 
 const useImagesQuery = ({ search }: IImageQuery): IImageQueryResult => {
-    const [searchValue] = useDebounce(search, 800);
-
+    const [page] = useState(1);
     const [isFetching, setFetching] = useState(false);
+
     const [data, setData] = useState<IImageItem[]>([]);
     const [error, setError] = useState({});
 
+    const [query] = useDebounce(search, 800);
+
     useEffect(() => {
-        if (searchValue) {
+        if (query) {
             setFetching(true);
 
-            googleApiSearchService
-                .find(searchValue)
-                .then(({ items }: any) => {
-                    setData(
-                        map(items, (item: any) => ({
-                            link: item.link,
-                            context: item.image?.contextLink,
-                            height: item.image?.height,
-                            width: item.image?.width,
-                            title: item.title,
-                            thumbnailLink: item.image?.thumbnailLink
-                        }))
-                    );
+            pexelsService
+                .findPictures({ query, page })
+                .then((data: any) => {
+                    const newData = map(data.photos, (photo) => ({
+                        alt: photo.alt,
+                        url: photo.url,
+                        smallSrc: photo.src?.small,
+                        originalSrc: photo.src?.original,
+                        height: photo.height,
+                        width: photo.width,
+                    }));
+
+                    setData(newData);
                 })
-                .catch((error: any) => setError(error))
-                .finally(() => setFetching(false))
+                .catch((error) => setError(error))
+                .finally(() => setFetching(false));
         }
-    }, [searchValue]);
+    }, [query, page]);
 
     return {
         isFetching,
         data,
-        error,
+        error
     };
 };
 
