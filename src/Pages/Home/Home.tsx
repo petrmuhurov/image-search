@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Helmet } from "react-helmet";
-import { Form, Input, Spin } from "antd";
+import { Form, Input, Spin, Result } from "antd";
+
+import { useDebounce } from "use-debounce";
 
 import { Cards } from "../../components";
 
@@ -28,7 +30,11 @@ const FormWrapper = styled(Form)`
 const Home = () => {
     const [searchValue, setSearchValue] = useState("");
 
-    const { data, isFetching } = useImagesQuery({ search: searchValue });
+    const [search] = useDebounce(searchValue, 800);
+
+    const { data, isFetching, loadMore, totalCount } = useImagesQuery({
+        search,
+    });
 
     return (
         <>
@@ -45,7 +51,22 @@ const Home = () => {
                 </Form.Item>
             </FormWrapper>
             <Spin spinning={isFetching}>
-                <Cards data={data} />
+                <Cards
+                    data={data}
+                    totalCount={totalCount}
+                    loadMore={loadMore}
+                    noDataPlaceholder={
+                        !isFetching && (
+                            <Result
+                                title={
+                                    search
+                                        ? "Try another query"
+                                        : "Start typing to see the result"
+                                }
+                            />
+                        )
+                    }
+                />
             </Spin>
         </>
     );
