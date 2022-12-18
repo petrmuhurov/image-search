@@ -1,6 +1,8 @@
 import baseService from "./baseService";
 
-const API_KEY = "563492ad6f91700001000001dc2cbd4818c3457cab41c94ddf3291fc";
+//you should set your own api key
+//https://pexels.com/
+const API_KEY = "";
 const URL = "https://api.pexels.com/v1/search";
 
 interface FindPicturesParams {
