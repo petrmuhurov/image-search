@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { Form, Input, Spin } from "antd";
 
-import Cards from "../../components/Cards";
+import { Cards } from "../../components";
 
 import { useImagesQuery } from "../../utils/hooks";
 

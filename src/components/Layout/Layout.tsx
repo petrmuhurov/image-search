@@ -6,10 +6,6 @@ import { Layout } from "antd";
 
 import Header from "../Header";
 
-interface IProps {
-    children: React.ReactNode;
-}
-
 const StyledLayout = styled(Layout)`
     min-height: 100vh;
 
@@ -19,7 +15,7 @@ const StyledLayout = styled(Layout)`
     }
 `;
 
-const AppLayout: React.FC<IProps> = ({ children }) => (
+const AppLayout = ({ children }: React.PropsWithChildren) => (
     <StyledLayout className="layout">
         <Header />
         <Layout.Content>{children}</Layout.Content>

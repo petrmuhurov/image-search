@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { Form, Input, Button } from "antd";
 
-import Layout from "../../components/Layout";
+import { Layout } from "../../components";
 import { useAuthUser } from "../../utils/hooks";
 
 const FormWrapper = styled("div")`

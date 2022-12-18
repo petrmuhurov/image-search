@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 
 import Authentication from "./Pages/Authentication";
 import AppRoutes from "./Pages/Routes";
-import ApplicationFallback from "./components/ApplicationFallback";
+import { ApplicationFallback } from "./components";
 
 import "./App.css";
 
