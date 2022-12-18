@@ -75,21 +75,4 @@ const Cards = ({
     );
 };
 
-// const Cards = ({ data }: Props) => {
-//     return (
-//         <CardWrapper>
-//             {map(data, (item) => (
-//                 <Image
-//                     key={`image-${item.url}`}
-//                     src={item.smallSrc}
-//                     alt={item.alt}
-//                     preview={{ src: item.originalSrc }}
-//                     height="240px"
-//                     placeholder={<Spin />}
-//                 />
-//             ))}
-//         </CardWrapper>
-//     );
-// };
-
 export default Cards;
