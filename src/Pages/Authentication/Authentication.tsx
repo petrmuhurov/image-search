@@ -36,7 +36,7 @@ const Authentication = ({ children }: React.PropsWithChildren) => {
                             rules={[
                                 {
                                     required: true,
-                                    message: "Please fill the required field",
+                                    message: "Field is required",
                                 },
                                 {
                                     max: 32,
@@ -44,7 +44,10 @@ const Authentication = ({ children }: React.PropsWithChildren) => {
                                 },
                             ]}
                         >
-                            <Input placeholder="Please enter your name" />
+                            <Input
+                                placeholder="Please enter your name"
+                                data-testid="name-field-input"
+                            />
                         </Form.Item>
                         <Button
                             type="primary"

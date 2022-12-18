@@ -10,7 +10,7 @@ interface AuthUser {
 
 export default atom({
     key: "authUser",
-    default: get(AUTH_USER_STORAGE_KEY) as AuthUser,
+    default: get(AUTH_USER_STORAGE_KEY) || {} as AuthUser,
     effects: [
         ({ onSet }) => {
             onSet((user: AuthUser) => {
