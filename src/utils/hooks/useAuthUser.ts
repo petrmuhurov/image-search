@@ -5,11 +5,11 @@ import { useRecoilState } from "recoil";
 import { authUser } from "../../stores";
 
 interface User {
-    name: string;
+    name?: string;
 }
 
 const useAuthUser = () => {
-    const [user, setUser] = useRecoilState(authUser);
+    const [user, setUser] = useRecoilState<User>(authUser);
 
     const logout = useCallback(() => {
         setUser({});
