@@ -1,38 +1,34 @@
-// import React from "react";
+import React from "react";
 
-// import { render, screen } from "@testing-library/react";
+import Authentication from "./Authentication";
+import render from "../../utils/tests";
 
-// import Login from "./Login";
+const Auth = () => <Authentication>Signed in</Authentication>;
 
-// describe("<Login>:", function () {
-//     describe("All controls visible", function () {
-//         it("First Name", async () => {
-//             render(<Login />);
+describe("<Authentication>:", function () {
+    describe("All controls are visible", function () {
+        it("First Name", async () => {
+            const { getByTestId } = render(<Auth />);
 
-//             const node = screen.getByTestId("name-field");
+            const node = getByTestId("name-field");
 
-//             expect(node).toBeInTheDocument();
-//             expect(node).toBeVisible();
-//         });
+            expect(node).toBeInTheDocument();
+            expect(node).toBeVisible();
+        });
 
-//         it("Submit Button", async () => {
-//             render(<Login />);
+        it("Sign In", async () => {
+            const { getByTestId } = render(<Auth />);
 
-//             const node = screen.getByTestId("submit-button");
+            const node = getByTestId("submit-button");
 
-//             expect(node).toBeInTheDocument();
-//             expect(node).toBeVisible();
-//         });
-//     });
+            expect(node).toBeInTheDocument();
+            expect(node).toBeVisible();
+        });
+    });
 
-//     describe("Validation errors", function () {
-//         it("First Name is required", function () {});
+    describe("Validation errors", function () {
+        xit("Max length 32", async () => {});
 
-//         it("First Name is less than 32 characters", function () {});
-//     });
-
-//     describe("User logins", function () {
-//         it("User data is stored", function () {});
-//     });
-// });
-export {};
+        xit("Is Required", async () => {});
+    });
+});
