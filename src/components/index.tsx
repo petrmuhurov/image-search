@@ -1,5 +1,7 @@
-export { default as ApplicationFallback } from "./ApplicationFallback";
-export { default as Cards } from "./Cards";
-export { default as Header } from "./Header";
-export { default as Layout } from "./Layout";
-export { default as TestWrapper } from "./TestWrapper";
+import ApplicationFallback from "./ApplicationFallback";
+import Cards from "./Cards";
+import Header from "./Header";
+import Layout from "./Layout";
+import TestWrapper from "./TestWrapper";
+
+export { ApplicationFallback, Cards, Header, Layout, TestWrapper };

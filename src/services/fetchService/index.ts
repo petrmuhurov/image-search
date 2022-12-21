@@ -1,2 +1,5 @@
-export { default as authService } from "./authService";
-export { default as pexelsService } from "./pexelsService";
+import authService from "./authService";
+import baseService from "./baseService";
+import pexelsService from "./pexelsService";
+
+export { authService, baseService, pexelsService };

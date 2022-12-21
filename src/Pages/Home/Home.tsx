@@ -1,31 +1,18 @@
-import React, { useState } from "react";
+import map from "lodash/map";
 
-import styled from "styled-components";
+import React, { useMemo, useState } from "react";
 
 import { Helmet } from "react-helmet";
 import { Form, Input, Spin, Result } from "antd";
 
 import { useDebounce } from "use-debounce";
 
-import { Cards } from "../../components";
+import Cards, { CardProps } from "../../components/Cards";
 
-import { useImagesQuery } from "../../utils/hooks";
+import { ImageItem, useImagesQuery } from "../../utils/hooks";
+import { DEFAULT_CARD_HEIGHT } from "./constants";
 
-const FormWrapper = styled(Form)`
-    position: sticky;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 12px;
-    z-index: 10;
-    background: #f5f5f5;
-
-    & .ant-form-item {
-        width: 400px;
-        margin-bottom: 12px;
-    }
-`;
+import { StyledForm } from "./styled";
 
 const Home = () => {
     const [searchValue, setSearchValue] = useState("");
@@ -36,10 +23,25 @@ const Home = () => {
         search,
     });
 
+    const cards = useMemo(
+        () =>
+            map(
+                data,
+                (item: ImageItem): CardProps => ({
+                    src: item.smallSrc,
+                    alt: item.alt,
+                    preview: { src: item.originalSrc },
+                    height: DEFAULT_CARD_HEIGHT,
+                    placeholder: <Spin spinning />,
+                })
+            ),
+        [data]
+    );
+
     return (
         <>
             <Helmet title="Home" />
-            <FormWrapper>
+            <StyledForm>
                 <Form.Item>
                     <Input.Search
                         value={searchValue}
@@ -49,10 +51,10 @@ const Home = () => {
                         placeholder="We will get you whatever you want"
                     />
                 </Form.Item>
-            </FormWrapper>
+            </StyledForm>
             <Spin spinning={isFetching}>
                 <Cards
-                    data={data}
+                    data={cards}
                     totalCount={totalCount}
                     loadMore={loadMore}
                     noDataPlaceholder={

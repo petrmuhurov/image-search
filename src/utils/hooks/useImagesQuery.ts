@@ -2,14 +2,14 @@ import { map } from "lodash";
 
 import { useState, useEffect, useCallback } from "react";
 
-import { pexelsService } from "../../services";
-import usePrevious from "./usePrevious";
+import { pexelsService } from "../../services/fetchService";
+import { usePrevious } from ".";
 
-interface IImageQuery {
+export interface ImageQuery {
     search?: string;
 }
 
-interface IImageItem {
+export interface ImageItem {
     alt: string;
     url: string;
     smallSrc: string;
@@ -18,20 +18,20 @@ interface IImageItem {
     width: number;
 }
 
-interface IImageQueryResult {
+export interface ImageQueryResult {
     isFetching: boolean;
-    data: IImageItem[];
+    data: ImageItem[];
     error: any;
     loadMore: () => void;
     totalCount: number;
 }
 
 /* eslint-disable react-hooks/exhaustive-deps */
-const useImagesQuery = ({ search }: IImageQuery): IImageQueryResult => {
+const useImagesQuery = ({ search }: ImageQuery): ImageQueryResult => {
     const [page, setPage] = useState(1);
     const [isFetching, setFetching] = useState(false);
 
-    const [data, setData] = useState<IImageItem[]>([]);
+    const [data, setData] = useState<ImageItem[]>([]);
     const [error, setError] = useState({});
     const [totalCount, setTotalCount] = useState(0);
 
@@ -44,7 +44,7 @@ const useImagesQuery = ({ search }: IImageQuery): IImageQueryResult => {
 
         if (search !== prevSearch) {
             setPage(1);
-            setData([])
+            setData([]);
         }
 
         if (search && !isFetching) {
@@ -69,7 +69,7 @@ const useImagesQuery = ({ search }: IImageQuery): IImageQueryResult => {
 
                     setData(newData);
                 })
-                .catch((error) => setError(error))
+                .catch((error: any) => setError(error))
                 .finally(() => setFetching(false));
         }
     }, [search, page]);

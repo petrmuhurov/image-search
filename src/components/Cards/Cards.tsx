@@ -3,47 +3,28 @@ import { isEmpty, map } from "lodash";
 import React from "react";
 
 import InfiniteScroll from "react-infinite-scroll-component";
-import styled from "styled-components";
 
-import { Image, Spin, Divider } from "antd";
+import { Divider } from "antd";
 
-interface CardItem {
-    alt: string;
-    url: string;
-    smallSrc: string;
-    originalSrc: string;
-    height: number;
-    width: number;
-}
+import Card, { CardProps } from "./Card";
 
-interface Props {
-    data: CardItem[];
+import { StyledScrollable, StyledCards } from "./styled";
+
+export interface CardsProps {
+    data: CardProps[];
     loadMore: () => void;
     totalCount: number;
     noDataPlaceholder?: React.ReactNode;
 }
-
-const ScrollableDiv = styled("div")`
-    overflow: auto;
-    padding: 0 16px;
-    height: calc(100vh - 120px);
-`;
-
-const CardsWrapper = styled("div")`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 16px;
-`;
 
 const Cards = ({
     data = [],
     loadMore,
     totalCount,
     noDataPlaceholder = "No Data",
-}: Props) => {
+}: CardsProps) => {
     return (
-        <ScrollableDiv id="scrollableDiv">
+        <StyledScrollable id="scrollableDiv">
             {totalCount === 0 ? (
                 noDataPlaceholder
             ) : (
@@ -57,21 +38,20 @@ const Cards = ({
                     }
                     scrollableTarget="scrollableDiv"
                 >
-                    <CardsWrapper>
+                    <StyledCards>
                         {map(data, (item) => (
-                            <Image
-                                key={`image-${item.url}`}
-                                src={item.smallSrc}
-                                alt={item.alt}
-                                preview={{ src: item.originalSrc }}
-                                height="240px"
-                                placeholder={<Spin spinning />}
+                            <Card
+                                key={`image-${item.src}`}
+                                src={item.src}
+                                preview={item.preview}
+                                height={item.height}
+                                placeholder={item.placeholder}
                             />
                         ))}
-                    </CardsWrapper>
+                    </StyledCards>
                 </InfiniteScroll>
             )}
-        </ScrollableDiv>
+        </StyledScrollable>
     );
 };
 

@@ -1,24 +1,12 @@
 import React from "react";
 
-import styled from "styled-components";
-
 import { Helmet } from "react-helmet";
 import { Form, Input, Button } from "antd";
 
 import { Layout } from "../../components";
 import { useAuthUser } from "../../utils/hooks";
 
-const FormWrapper = styled("div")`
-    height: calc(100vh - 64px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    & .ant-form {
-        min-width: 400px;
-    }
-`;
+import { StyledFormWrapper } from "./styled";
 
 const Authentication = ({ children }: React.PropsWithChildren) => {
     const { isLoggedIn, login } = useAuthUser();
@@ -27,7 +15,7 @@ const Authentication = ({ children }: React.PropsWithChildren) => {
         <Layout>
             <Helmet title="Login" />
             {!isLoggedIn && (
-                <FormWrapper>
+                <StyledFormWrapper>
                     <h2>Please enter your first name</h2>
                     <Form onFinish={login}>
                         <Form.Item
@@ -57,7 +45,7 @@ const Authentication = ({ children }: React.PropsWithChildren) => {
                             Sign In
                         </Button>
                     </Form>
-                </FormWrapper>
+                </StyledFormWrapper>
             )}
             {isLoggedIn && children}
         </Layout>
