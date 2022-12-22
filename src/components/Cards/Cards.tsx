@@ -24,7 +24,7 @@ const Cards = ({
     noDataPlaceholder = "No Data",
 }: CardsProps) => {
     return (
-        <StyledScrollable id="scrollableDiv">
+        <StyledScrollable id="scrollableDiv" data-testid="cards">
             {totalCount === 0 ? (
                 noDataPlaceholder
             ) : (
