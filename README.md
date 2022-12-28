@@ -1,7 +1,10 @@
 # Getting Started with Image Search
 
 ## Before you get started make sure to get your own API-key for pexels
+
 https://www.pexels.com/api/new/
+
+and paste it into ./src/services/fetchService/pexelsService.ts
 
 ## Available Scripts
 
