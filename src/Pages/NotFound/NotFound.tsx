@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { Result, Button } from "antd";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 import { ROUTES } from "../../constants";
 

@@ -2,7 +2,7 @@ import map from "lodash/map";
 
 import React, { useMemo, useState } from "react";
 
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Form, Input, Spin, Result } from "antd";
 
 import { useDebounce } from "use-debounce";
