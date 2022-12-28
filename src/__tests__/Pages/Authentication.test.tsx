@@ -3,15 +3,19 @@ import React from "react";
 import userEvent from "@testing-library/user-event";
 
 import { Authentication } from "../../Pages";
-import render, { fireEvent, waitFor } from "../../utils/tests";
+import render, { fireEvent, RenderResult, waitFor } from "../../utils/tests";
 
 const Auth = () => <Authentication>Signed in</Authentication>;
 
 describe("<Authentication>:", function () {
+    let getByTestId: RenderResult['getByTestId'];
+
+    beforeEach(() => {
+        ({ getByTestId } = render(<Auth />))
+    })
+
     describe("All controls are visible", function () {
         it("First Name", async () => {
-            const { getByTestId } = render(<Auth />);
-
             const node = getByTestId("name-field");
 
             expect(node).toBeInTheDocument();
@@ -19,8 +23,6 @@ describe("<Authentication>:", function () {
         });
 
         it("Sign In", async () => {
-            const { getByTestId } = render(<Auth />);
-
             const node = getByTestId("submit-button");
 
             expect(node).toBeInTheDocument();
@@ -30,8 +32,6 @@ describe("<Authentication>:", function () {
 
     describe("Validation", function () {
         it("Error: Is Required", async () => {
-            const { getByTestId } = render(<Auth />);
-
             const node = getByTestId("name-field-input");
             const button = getByTestId("submit-button");
 
@@ -41,8 +41,6 @@ describe("<Authentication>:", function () {
         });
 
         it("Error: Max Length 32", async () => {
-            const { getByTestId } = render(<Auth />);
-
             const node = getByTestId("name-field-input");
             const button = getByTestId("submit-button");
 
@@ -54,8 +52,6 @@ describe("<Authentication>:", function () {
         });
 
         it("Passes", async () => {
-            const { getByTestId } = render(<Auth />);
-
             const node = getByTestId("name-field-input");
             const button = getByTestId("submit-button");
 
