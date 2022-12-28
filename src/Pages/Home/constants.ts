@@ -1,1 +1,1 @@
-export const DEFAULT_CARD_HEIGHT = 240
+export const DEFAULT_CARD_HEIGHT = 130

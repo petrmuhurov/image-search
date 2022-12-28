@@ -1,6 +1,6 @@
 import { isEmpty, map } from "lodash";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -13,6 +13,7 @@ import { StyledScrollable, StyledCards } from "./styled";
 export interface CardsProps {
     data: CardProps[];
     loadMore: () => void;
+    isLoading: boolean;
     totalCount: number;
     noDataPlaceholder?: React.ReactNode;
 }
@@ -20,11 +21,28 @@ export interface CardsProps {
 const Cards = ({
     data = [],
     loadMore,
+    isLoading,
     totalCount,
     noDataPlaceholder = "No Data",
 }: CardsProps) => {
+    const scrollableRef = useRef<HTMLDivElement>(null);
+
+    const hasMore = data.length < totalCount;
+
+    useEffect(() => {
+        if (scrollableRef.current && hasMore && !isLoading) {
+            const { scrollHeight, clientHeight } = scrollableRef.current
+
+            if (scrollHeight <= clientHeight) loadMore()
+        }
+    }, [isLoading, hasMore, loadMore]);
+
     return (
-        <StyledScrollable id="scrollableDiv" data-testid="cards">
+        <StyledScrollable
+            id="scrollableDiv"
+            data-testid="cards"
+            ref={scrollableRef}
+        >
             {totalCount === 0 ? (
                 noDataPlaceholder
             ) : (
@@ -37,6 +55,7 @@ const Cards = ({
                         !isEmpty(data) && <Divider plain>That's all</Divider>
                     }
                     scrollableTarget="scrollableDiv"
+                    scrollThreshold="200px"
                 >
                     <StyledCards>
                         {map(data, (item) => (

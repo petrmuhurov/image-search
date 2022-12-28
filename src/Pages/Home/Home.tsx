@@ -57,6 +57,7 @@ const Home = () => {
                     data={cards}
                     totalCount={totalCount}
                     loadMore={loadMore}
+                    isLoading={isFetching}
                     noDataPlaceholder={
                         !isFetching && (
                             <Result
