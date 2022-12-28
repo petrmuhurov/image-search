@@ -55,7 +55,7 @@ const Cards = ({
                         !isEmpty(data) && <Divider plain>That's all</Divider>
                     }
                     scrollableTarget="scrollableDiv"
-                    scrollThreshold="200px"
+                    scrollThreshold="400px"
                 >
                     <StyledCards>
                         {map(data, (item) => (
