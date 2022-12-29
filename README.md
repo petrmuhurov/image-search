@@ -40,5 +40,7 @@ Easy to setup, easy to test. Was added only for storing logged in user.
 ## What could be added if there were more time
 
 Better pictures rendering (placement, different number per row depending on picture ratio)
+
 Cache for search results and search query
+
 Test coverage
